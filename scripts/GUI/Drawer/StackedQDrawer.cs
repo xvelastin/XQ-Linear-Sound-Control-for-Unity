@@ -5,12 +5,9 @@ using System.Collections.Generic;
 
 [CustomPropertyDrawer(typeof(StackedQ))]
 public class StackedQDrawer : PropertyDrawer
-{
-    // Variable
+{    
     private float propertyHeight;
     private Dictionary<string, ReorderableList> qstackDict = new Dictionary<string, ReorderableList>();
-
-    // Constant
     private static float singleLineHeight = EditorGUIUtility.singleLineHeight;
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -181,5 +178,4 @@ public class StackedQDrawer : PropertyDrawer
         property.serializedObject.ApplyModifiedProperties();
         EditorGUI.EndProperty();
     }
-
 }

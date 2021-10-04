@@ -1,6 +1,3 @@
-// xq version 0.5 :: alpha
-// last edit: 3 October 2021
-
 using UnityEngine;
 
 /// <summary>
@@ -14,17 +11,17 @@ public class QTrigger : MonoBehaviour
     public int next;
     public int total;
 
-    public void NextQ()
+    public void NextXQ()
     {
         if (!CheckNulls())
         {
-            Debug.Log(this + ": NextQ() called, but no Qs found in Q List");
+            Debug.Log(this + ": NextXQ() called, but no XQs found in Q List");
             return;
         }
 
         var selCue = targetQList.qlist[next];
         selCue.Trigger();
-        Debug.Log(this + ":: Triggered Q " + next + ": " + selCue.name);
+        Debug.Log(this + ":: Triggered XQ " + next + ": " + selCue.name);
 
         current = this.next;
         if (this.next + 1 < targetQList.qlist.Count)
@@ -39,10 +36,19 @@ public class QTrigger : MonoBehaviour
 
     private bool CheckNulls()
     {
-        if (!targetQList) targetQList = GetComponent<QList>();
+        if (!targetQList)
+        {
+            targetQList = GetComponent<QList>();
+        }
 
-        if (total > 0) return true;
-        else return false;
+        if (total > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void UpdateCount()
@@ -50,6 +56,4 @@ public class QTrigger : MonoBehaviour
         if (!targetQList) return;
         total = targetQList.qlist.Count;
     }
-
-
 }

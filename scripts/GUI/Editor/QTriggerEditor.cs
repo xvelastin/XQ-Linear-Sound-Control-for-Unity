@@ -4,10 +4,6 @@ using UnityEditor;
 [CustomEditor(typeof(QTrigger))]
 public class QTriggerEditor : Editor
 {
-    SerializedProperty currentIndex;
-    SerializedProperty nextIndex;
-    SerializedProperty totalInnt;
-
     QTrigger script;
 
     private void OnEnable()
@@ -22,9 +18,9 @@ public class QTriggerEditor : Editor
 
         DrawDefaultInspector();
 
-        if (GUILayout.Button("Next Q"))
+        if (GUILayout.Button("Next XQ"))
         {
-            script.NextQ();
+            script.NextXQ();
         }
 
         serializedObject.ApplyModifiedProperties();

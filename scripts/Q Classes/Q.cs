@@ -104,7 +104,10 @@ public class Q
 
     public void Trigger()
     {
-        if (!CheckNulls()) return;
+        if (!CheckNulls())
+        {
+            return;
+        }
 
         // Sends the info from this Q to a "Q Manager" Singleton        
         if (prewaitTime == 0.0f)

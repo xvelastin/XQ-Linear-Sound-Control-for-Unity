@@ -4,16 +4,13 @@ using System.Collections.Generic;
 
 [CustomPropertyDrawer(typeof(Q))]
 public class QDrawer : PropertyDrawer
-{
-    // Variable
-    private int lines;
-    private float propertyHeightSum;
-
-    // Constant
-    private static float singleLineHeight = EditorGUIUtility.singleLineHeight;
+{   
     public static int basepropertyHeightInLines = 6;
 
-    // Override property height with calculations in OnGUI
+    private int lines;
+    private float propertyHeightSum;
+    private static float singleLineHeight = EditorGUIUtility.singleLineHeight;
+
     public override float GetPropertyHeight(SerializedProperty property, GUIContent contlabelent)
     {
         return propertyHeightSum;
@@ -237,24 +234,19 @@ public class QDrawer : PropertyDrawer
         return position;
     }
 
+    // private void DeleteButton()
+    // {
+    //     //Todo :: Get functionality working - how to get StackedQ ('s qIndex) from each Q to delete individually? Bit fiddly.
 
-
-    private void DeleteButton()
-    {
-        // Todo :: Get functionality working - how to get StackedQ ('s qIndex) from each Q to delete individually? Bit fiddly.
-
-        // Rect DeleteButtonPosition = new Rect(Screen.width - Screen.width / 4, position.y + singleLineHeight, Screen.width / 5, singleLineHeight);
-        // GUIStyle DeleteButtonStyle = new GUIStyle(EditorStyles.toolbarButton);
-        // XQ.GUIUtility.ColorAllTextInStyle(DeleteButtonStyle, highlightColor);
-        // DeleteButtonStyle.hover.textColor = Color.red;
-        // DeleteButtonStyle.onHover.textColor = Color.red;
-        // DeleteButtonStyle.fontStyle = FontStyle.Bold;
-        // if (GUI.Button(DeleteButtonPosition, "Delete Cue", DeleteButtonStyle))
-        // {
-        //     SerializedObject thisQList = property.serializedObject;
-
-
-        //     Debug.Log(property.FindPropertyRelative("name").stringValue);
-        // }
-    }
+    //     Rect DeleteButtonPosition = new Rect(Screen.width - Screen.width / 4, position.y + singleLineHeight, Screen.width / 5, singleLineHeight);
+    //     GUIStyle DeleteButtonStyle = new GUIStyle(EditorStyles.toolbarButton);
+    //     XQ.GUIUtility.ColorAllTextInStyle(DeleteButtonStyle, highlightColor);
+    //     DeleteButtonStyle.hover.textColor = Color.red;
+    //     DeleteButtonStyle.onHover.textColor = Color.red;
+    //     DeleteButtonStyle.fontStyle = FontStyle.Bold;
+    //     if (GUI.Button(DeleteButtonPosition, "Delete Cue", DeleteButtonStyle))
+    //     {
+            
+    //     }
+    // }
 }

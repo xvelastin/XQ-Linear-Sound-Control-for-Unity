@@ -63,7 +63,6 @@ public class XQAudioSourceController : MonoBehaviour
         isFading = true;
     }
 
-
     /// <summary>
     /// Begins a fade on the attached Audiosource component. The optional curve shape argument defines the rate at which the volume values change over the duration of the fade.
     /// </summary>
@@ -74,7 +73,6 @@ public class XQAudioSourceController : MonoBehaviour
     {
         curveShape = Mathf.Clamp(curveShape, 0.0f, 1.0f);
 
-        // This took me SO long to get right.
         Keyframe[] keys = new Keyframe[2];
         keys[0] = new Keyframe(0, 0, 0, Mathf.Sin(curveShape), 0, 1.0f - curveShape);
         keys[1] = new Keyframe(1, 1, 1 - curveShape, 0, curveShape, 0);
@@ -105,8 +103,7 @@ public class XQAudioSourceController : MonoBehaviour
         StartCoroutine(StartFadeInDb(fadetime, targetVol, animcur));
         isFading = true;
     }
-
-
+    
     private IEnumerator StartFadeInDb(float fadetime, float targetVol, AnimationCurve animcur)
     {
         UpdateFadeVolume();
@@ -142,17 +139,23 @@ public class XQAudioSourceController : MonoBehaviour
     #endregion
 
     #region Playback
+    /// <summary>
+    /// Play this Audio Source's clip.
+    /// </summary>
+    /// <param name="playbackSpeed">The speed, or pitch, of the clip.</param>
     public void Play(float playbackSpeed)
     {
         CheckAudiosource();
         Debug.Log("XQAudioSourceController on " + gameObject.name + ": Play triggered.");
         source.pitch = playbackSpeed;
 
+        // Initialises fadeVolume ready for future fades.
         fadeVolume = startingVolume;
         UpdateAudiosourceVolume();
 
+        // Passes the loop argument through in case it's changed.
         source.loop = loop;
-
+    
         if (paused)
         {
             source.UnPause();
@@ -165,7 +168,11 @@ public class XQAudioSourceController : MonoBehaviour
             playing = true;
         }
     }
-
+    
+    /// <summary>
+    /// Stops the Audio Source after a very short fade to minimise audible pops.
+    /// </summary>
+    /// <param name="pause">If true, the clip will restart at the same point if Play is called again on this Audio Source.</param>
     public void Stop(bool pause)
     {
         if (pause)
@@ -177,14 +184,14 @@ public class XQAudioSourceController : MonoBehaviour
         CheckAudiosource();
         Debug.Log("XQAudioSourceController on " + gameObject.name + ": Stop triggered.");
 
-        // Coroutine both stops any ongoing fade and avoids an audible pop on a snap off.
+        // Using a Coroutine both stops any ongoing fade and avoids an audible pop on a snap off.
         StartCoroutine(StopAfterFade(minimumFadeTime));
 
         paused = false;
         playing = false;
     }
 
-    public void Pause()
+    private void Pause()
     {
         CheckAudiosource();
         Debug.Log("XQAudioSourceController on " + gameObject.name + ": Pause triggered.");
@@ -194,7 +201,7 @@ public class XQAudioSourceController : MonoBehaviour
         paused = true;
     }
 
-    IEnumerator StopAfterFade(float fadeTime)
+    private IEnumerator StopAfterFade(float fadeTime)
     {
         FadeTo(XQ.AudioUtility.minimum, fadeTime);
         yield return new WaitForSeconds(fadeTime);
@@ -206,7 +213,10 @@ public class XQAudioSourceController : MonoBehaviour
     #region Checks and Updates
     private void CheckAudiosource()
     {
-        if (!source) source = GetComponent<AudioSource>();
+        if (!source)
+        {
+            source = GetComponent<AudioSource>();
+        } 
     }
 
     private void UpdateFadeVolume()

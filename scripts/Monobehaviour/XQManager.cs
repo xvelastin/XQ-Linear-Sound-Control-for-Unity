@@ -49,6 +49,9 @@ public class XQManager : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// Plays the Q according to its type and sets the relevant parameters. Parameters that are not relevant to the Q type aren't updated, to minimise clashes between Qs.
+    /// </summary>
     public void PlayQ(Q targetQ, XQAudioSourceController ASC, CueType cueType, float playSpeed, float targetVol, float fadeTime, float curveShape, bool pause)
     {
         targetQ.UpdateTargetASCParameters(cueType);
@@ -66,8 +69,5 @@ public class XQManager : MonoBehaviour
                 ASC.Stop(pause);
                 break;
         }
-
     }
 }
-
-
