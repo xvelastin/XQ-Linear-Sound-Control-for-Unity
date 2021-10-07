@@ -16,14 +16,14 @@ public class Q
 
     // play q props
     [SerializeReference] protected bool _loop;
-    [SerializeReference] [Range(-70, 24)] protected float _outputVolume;
-    [SerializeReference] [Range(-70, 24)] protected float _startingVolume;
+    [SerializeReference] [Range(-70, 24)] protected float _outputVolume = 0.0f;
+    [SerializeReference] [Range(-70, 24)] protected float _startingVolume = 0.0f;
     [SerializeReference] [Range(-3, 3)] protected float _playSpeed = 1.0f;
 
     // fade q props
-    [SerializeReference] [Range(-70, 0)] protected float _targetVol;
-    [SerializeReference] [Range(0, 30)] protected float _fadeTime;
-    [SerializeReference] [Range(0, 1)] protected float _curveShape;
+    [SerializeReference] [Range(-70, 0)] protected float _targetVol = 0.0f;
+    [SerializeReference] [Range(0, 30)] protected float _fadeTime = 3.0f;
+    [SerializeReference] [Range(0, 1)] protected float _curveShape = 0.5f;
 
     // stop q props
     [SerializeReference] protected bool _pause;
@@ -123,6 +123,13 @@ public class Q
     // updating references and idiot proofing. returns false if there's a problem.
     private bool CheckNulls()
     {
+        // checks for an instance of the manager singleton.
+        if (!XQManager.Instance)
+        {
+            Debug.LogError("XQ: You must have a XQManager in the scene for XQ to function.");
+            return false;
+        }
+
         // check if the game object has an ASC
         if (target.GetComponent<XQAudioSourceController>())
         {
@@ -148,15 +155,15 @@ public class Q
                 // if it doesn't, we have a problem.
                 else
                 {
-                    Debug.LogError("XQ attempted to trigger something on " + target.name + ", but it couldn't find a clip to play. Ensure there's a clip attached to the Game Object.");
+                    Debug.LogError("XQ: Attempted to trigger something on " + target.name + ", but it couldn't find a clip to play. Ensure there's a clip attached to the Game Object.");
                     return false;
                 }
 
             }
-            // could add an audiosource but there would still not be a clip.
+            // no point in adding an audio source since there still wouldn't be a clip.
             else
             {
-                Debug.LogError("XQ attmpted to trigger something on " + target.name + ", but it couldn't find an Audio Source component. Is the target in the Q List correct?");
+                Debug.LogError("XQ: Attmpted to trigger something on " + target.name + ", but it couldn't find an Audio Source component. Is the target in the Q List correct?");
                 return false;
             }
         }
