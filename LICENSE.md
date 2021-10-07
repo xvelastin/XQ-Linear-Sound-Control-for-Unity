@@ -1,0 +1,2 @@
+# License
+All Rights Reserved. This isn't released yet - it's not been tested properly and I don't know its issues, so I would rather it not be distributed outside of the people I choose to share it with. For that reason, I reserve all the rights to it. This will probably change once I have a stable release out but until now you may not distribute, copy or use it in any form without my written consent (which you will probably get if you ask me).
