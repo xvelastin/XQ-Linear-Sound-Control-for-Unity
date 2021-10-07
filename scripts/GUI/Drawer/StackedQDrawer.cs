@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 [CustomPropertyDrawer(typeof(StackedQ))]
 public class StackedQDrawer : PropertyDrawer
-{    
+{
     private float propertyHeight;
     private Dictionary<string, ReorderableList> qstackDict = new Dictionary<string, ReorderableList>();
     private static float singleLineHeight = EditorGUIUtility.singleLineHeight;
@@ -61,15 +61,15 @@ public class StackedQDrawer : PropertyDrawer
 
             position = new Rect(position.x, position.y, buttonRect.width / numButtons, singleLineHeight * buttonLines);
             bool AddPlayButton = GUI.Button(position, "add play q", PlayButtonStyle);
-            EditorGUI.LabelField(position, new GUIContent("", "Add a Play Action to to this Q"));
+            EditorGUI.LabelField(position, new GUIContent("", "Add a Play Q to to this XQ"));
 
             position = new Rect(position.x + (buttonRect.width / numButtons), position.y, buttonRect.width / numButtons, singleLineHeight * buttonLines);
             bool AddFadeButton = GUI.Button(position, "add fade q", FadeButtonStyle);
-            EditorGUI.LabelField(position, new GUIContent("", "Add a Fade Action to to this Q"));
+            EditorGUI.LabelField(position, new GUIContent("", "Add a Fade Q to to this XQ"));
 
             position = new Rect(position.x + (buttonRect.width / numButtons), position.y, buttonRect.width / numButtons, singleLineHeight * buttonLines);
             bool AddStopButton = GUI.Button(position, "add stop q", StopButtonStyle);
-            EditorGUI.LabelField(position, new GUIContent("", "Add a Stop Action to to this Q"));
+            EditorGUI.LabelField(position, new GUIContent("", "Add a Stop Q to to this XQ"));
 
             // Uses reflection to trigger the NewQ method with appropriate argument on the specific Stacked Q.
             if (AddPlayButton)
@@ -102,7 +102,7 @@ public class StackedQDrawer : PropertyDrawer
 
         if (qstackDict.ContainsKey(listKey))
         {
-            // get the rlist, if it exists
+            // Get the rlist, if one exists
             rlist = qstackDict[listKey];
         }
         else
@@ -117,7 +117,7 @@ public class StackedQDrawer : PropertyDrawer
 
                 drawHeaderCallback = position =>
                     {
-                        // changes offset of text field depending on header prefix length
+                        // Changes offset of text field depending on header prefix length
                         float textWidth = GUI.skin.label.CalcSize(new GUIContent(stackedQHeaderPrefix)).x;
 
                         EditorGUI.LabelField(
@@ -139,34 +139,33 @@ public class StackedQDrawer : PropertyDrawer
                     },
                 elementHeightCallback = index =>
                     {
-                        // change height depending on each q in the qstack's height (depends on CueType).
+                        // Change height depending on each q in the qstack's height (depends on CueType).
                         SerializedProperty selectedQ = qs.GetArrayElementAtIndex(index);
                         SerializedProperty cueType = selectedQ.FindPropertyRelative("cueType");
                         CueType cueTypeAsEnum = (CueType)cueType.enumValueIndex;
 
-                        // checks if the Q being drawn has been expanded
+                        // Checks if the Q being drawn has been expanded
                         if (selectedQ.isExpanded)
                         {
-                            // sets height depending on cue type
+                            // Sets height depending on cue type
                             int qtypelines = XQ.GUIUtility.QTypeToLines(cueTypeAsEnum);
-
                             return (qtypelines + QDrawer.basepropertyHeightInLines) * singleLineHeight;
                         }
                         else
                         {
-                            // shrink the property box to accomodate collapsed
+                            // Shrinks the property box to accomodate collapsed
                             return singleLineHeight;
                         }
                     }
             };
 
-            // & finally update dict
+            // & updates dict
             qstackDict[listKey] = rlist;
         }
         // Checks if the Stacked Q is expanded
         if (property.isExpanded)
         {
-            // sets height depending on the reorderable list ie. the sum of all q heights.
+            // Sets height depending on the reorderable list - the sum of all q heights.
             rlist.DoList(position);
             propertyHeight = rlist.GetHeight();
         }

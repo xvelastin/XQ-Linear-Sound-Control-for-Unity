@@ -103,7 +103,7 @@ public class XQAudioSourceController : MonoBehaviour
         StartCoroutine(StartFadeInDb(fadetime, targetVol, animcur));
         isFading = true;
     }
-    
+
     private IEnumerator StartFadeInDb(float fadetime, float targetVol, AnimationCurve animcur)
     {
         UpdateFadeVolume();
@@ -155,7 +155,7 @@ public class XQAudioSourceController : MonoBehaviour
 
         // Passes the loop argument through in case it's changed.
         source.loop = loop;
-    
+
         if (paused)
         {
             source.UnPause();
@@ -168,7 +168,7 @@ public class XQAudioSourceController : MonoBehaviour
             playing = true;
         }
     }
-    
+
     /// <summary>
     /// Stops the Audio Source after a very short fade to minimise audible pops.
     /// </summary>
@@ -216,7 +216,7 @@ public class XQAudioSourceController : MonoBehaviour
         if (!source)
         {
             source = GetComponent<AudioSource>();
-        } 
+        }
     }
 
     private void UpdateFadeVolume()
