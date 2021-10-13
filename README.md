@@ -36,3 +36,7 @@ The demo scene in the package contains two QLists populated and ready to be trig
 
 ## Contributing
 As this is in more or less active development, I'm all ears for feedback - let me know what works and didn't work, what you used it for, whether you had to change any of it etc. Feel free to fork and suggest changes. As I mention in my [license](LICENSE.md), feel free to use and distribute but always with credit and a link back to this repo.
+
+## Plans for next version
+* GUI: Highlight currently playing XQ in QList
+* Implement DontDestroyOnLoad for XQManager and as a toggle for QList objects.
