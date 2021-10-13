@@ -36,7 +36,7 @@ public class XQAudioSourceController : MonoBehaviour
 
         source.loop = loop;
         source.playOnAwake = false;
-        source.volume = XQ.AudioUtility.ConvertDbtoA(startingVolume);
+        source.volume = XQAudioUtility.ConvertDbtoA(startingVolume);
 
         // ensures fades start from the starting volume.
         fadeVolume = startingVolume;
@@ -203,7 +203,7 @@ public class XQAudioSourceController : MonoBehaviour
 
     private IEnumerator StopAfterFade(float fadeTime)
     {
-        FadeTo(XQ.AudioUtility.minimum, fadeTime);
+        FadeTo(XQAudioUtility.minimum, fadeTime);
         yield return new WaitForSeconds(fadeTime);
         source.Stop();
         yield break;
@@ -222,7 +222,7 @@ public class XQAudioSourceController : MonoBehaviour
     private void UpdateFadeVolume()
     {
         CheckAudiosource();
-        fadeVolume = XQ.AudioUtility.ConvertAtoDb(source.volume);
+        fadeVolume = XQAudioUtility.ConvertAtoDb(source.volume);
     }
 
     private float GetGain()
@@ -233,7 +233,7 @@ public class XQAudioSourceController : MonoBehaviour
     private void UpdateAudiosourceVolume()
     {
         float currentVol = GetGain();
-        source.volume = XQ.AudioUtility.ConvertDbtoA(currentVol);
+        source.volume = XQAudioUtility.ConvertDbtoA(currentVol);
     }
     #endregion
 
