@@ -30,6 +30,11 @@ public class XQManager : MonoBehaviour
         {
             _instance = this;
         }
+
+        if (Application.isPlaying)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
     #endregion
 
