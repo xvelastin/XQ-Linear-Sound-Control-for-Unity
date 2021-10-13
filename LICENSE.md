@@ -1,2 +1,2 @@
 # License
-All Rights Reserved. This isn't released yet - it's not been tested properly and I don't know its issues, so I would rather it not be distributed outside of the people I choose to share it with. For that reason, I reserve all the rights to it. This will probably change once I have a stable release out but until now you may not distribute, copy or use it in any form without my written consent (which you will probably get if you ask me).
+This is in development and it should be treated as such - it's not fit for commercial release, so please don't use it in anything commercial without checking first with me. Outside of that, please do use it and share it around as long as you credit me and link to this repo.
