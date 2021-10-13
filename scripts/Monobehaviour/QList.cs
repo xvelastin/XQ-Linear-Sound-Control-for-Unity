@@ -32,4 +32,13 @@ public class QList : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Call a specific XQ from this QList.
+    /// </summary>
+    /// <param name="index">The number of the XQ within the QList to be triggerd.</param>
+    public void PlayXQ(int index)
+    {
+        qlist[index].Trigger();
+    }
 }
