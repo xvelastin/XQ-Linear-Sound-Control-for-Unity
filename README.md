@@ -39,4 +39,4 @@ As this is in more or less active development, I'm all ears for feedback - let m
 
 ## Plans for next version
 * GUI: Highlight currently playing XQ in QList
-* Implement DontDestroyOnLoad for XQManager and as a toggle for QList objects.
+* Preview Q/XQ in Editor?
