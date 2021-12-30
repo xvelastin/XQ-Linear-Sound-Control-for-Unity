@@ -9,7 +9,7 @@ This plugin was created to assist those who use linear audio in Unity and who ar
 ## Docs
 When I get a chance I'll document this fully. Below is a brief overview of the components of the XQ system, you can also have a look at the code as I've commented it up. Additionally, there is a "demo" folder if you open with the unity package, which contains a small demo scene with a couple of implementation examples.
 
-[View the function routing diagram](XQ-LSC%20Routing.png)
+![View the function routing diagram](XQ-LSC%20Routing.png)
 
 XQ-LSC contains the following objects (most also have essential custom editor/property drawers, so make sure these are in the assets directory):
 ### Monobehaviour (must be in scene hierarchy)
