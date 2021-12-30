@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.2 - 2021-12-30
+### Modified
+- Changed project structure so it's not so sprawled out
+- Fixed references to StackedQ (old name for XQ) outside of editor classes
+- Tweaked line height so it looks a bit neater.
+- Qs have reference to their parent XQ now. Not used for anything yet but hope to use it to enable moving between XQs.
+
+### Unfixed Issues
+- Still some layout problems when adding new Qs.
+
 ## 0.5.1 - 2021-10-07
 ### Added
 - Function Routing diagramme to directory, to better visualise how the scripts work together.
