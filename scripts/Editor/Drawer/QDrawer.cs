@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [CustomPropertyDrawer(typeof(Q))]
 public class QDrawer : PropertyDrawer
 {
-    public static int basepropertyHeightInLines = 6;
+    public static int basepropertyHeightInLines = 5;
 
     private int lines;
     private float propertyHeightSum;
@@ -22,6 +22,8 @@ public class QDrawer : PropertyDrawer
 
         // ** Base Q Properties **
         SerializedProperty name = property.FindPropertyRelative("name");
+        SerializedProperty parentXQ = property.FindPropertyRelative("parentXQ");
+        SerializedProperty qIndex = property.FindPropertyRelative("qIndex");
         SerializedProperty cueType = property.FindPropertyRelative("cueType");
         CueType cueTypeAsEnum = (CueType)cueType.enumValueIndex;
         SerializedProperty target = property.FindPropertyRelative("target");
@@ -149,12 +151,33 @@ public class QDrawer : PropertyDrawer
             // Draw space depending on Q Type
             lines = XQGUIUtility.QTypeToLines(cueTypeAsEnum) + basepropertyHeightInLines;
             propertyHeightSum = singleLineHeight * lines;
+
+            // DELETE BUTTON
+            //Todo :: Get functionality working - how to get StackedQ ('s qIndex) from each Q to delete individually? Bit fiddly.
+            // Rect DeleteButtonPosition = new Rect(Screen.width - Screen.width / 4, position.y + singleLineHeight, Screen.width / 5, singleLineHeight);         
+
+            // GUIStyle DeleteButtonStyle = new GUIStyle(EditorStyles.toolbarButton);
+            // XQGUIUtility.ColorAllTextInStyle(DeleteButtonStyle, highlightColor);
+            // DeleteButtonStyle.hover.textColor = Color.red;
+            // DeleteButtonStyle.onHover.textColor = Color.red;
+            // DeleteButtonStyle.fontStyle = FontStyle.Bold;
+
+            // if (GUI.Button(DeleteButtonPosition, "Remove", DeleteButtonStyle))
+            // {   
+            //     int qindex = qIndex.intValue;
+            //     object selXQ = parentXQ.serializedObject as object; 
+            //     XQ selectedXQ = selXQ as XQ;
+            //     Debug.Log(selectedXQ.name);
+            //     selectedXQ.Delete(qIndex.intValue);                   
+            // }
+
         }
         else
         {
             lines = 1;
             propertyHeightSum = singleLineHeight * lines;
         }
+
         property.serializedObject.ApplyModifiedProperties();
         EditorGUI.EndProperty();
     }
@@ -234,19 +257,4 @@ public class QDrawer : PropertyDrawer
         return position;
     }
 
-    // private void DeleteButton()
-    // {
-    //     //Todo :: Get functionality working - how to get StackedQ ('s qIndex) from each Q to delete individually? Bit fiddly.
-
-    //     Rect DeleteButtonPosition = new Rect(Screen.width - Screen.width / 4, position.y + singleLineHeight, Screen.width / 5, singleLineHeight);
-    //     GUIStyle DeleteButtonStyle = new GUIStyle(EditorStyles.toolbarButton);
-    //     XQGUIUtility.ColorAllTextInStyle(DeleteButtonStyle, highlightColor);
-    //     DeleteButtonStyle.hover.textColor = Color.red;
-    //     DeleteButtonStyle.onHover.textColor = Color.red;
-    //     DeleteButtonStyle.fontStyle = FontStyle.Bold;
-    //     if (GUI.Button(DeleteButtonPosition, "Delete Cue", DeleteButtonStyle))
-    //     {
-
-    //     }
-    // }
 }
