@@ -7,11 +7,7 @@ XQ-LSC is based around linear playback by groups of single actions (**Qs**). Eac
 This plugin was created to assist those who use linear audio in Unity and who aren't already confident with audio programming or C#. You can use XQ without touching a single line of code as a linear playback script, QTrigger, is included within the package. Each XQ group in a QList can be directly called from Unity Events (such as a button) with the call PlayXQ(index) on a QList or NextXQ(index) on a QTrigger. Another advantage is that it is compatible with Unity's frustrating WebGL target limitations, which is useful if you need better volume and playback handling than native Unity (which sucks) but can't use middleware.
 
 ## Docs
-Below is a brief overview of the components of the XQ system, you can also have a look at the code as I've commented it up. Additionally, there is a "demo" folder if you open with the unity package, which contains a small demo scene with a couple of implementation examples.
-
-![View the function routing diagram](XQ-LSC%20Routing.png)
-
-All files are needed for XQ-LSC to function properly. XQ-LSC's class structure is found in **XQBaseClasses**. All interactable classes have custom property drawers and editors which must be in a folder named "Editor". The **XQManager** and at least one **QList** must be in the scene hierarchy. I've also included **QTrigger**, an optional implementation of linear playback controlling a single QList object at runtime, either with the button in the Inspector or by calling NextXQ.
+Below is a brief overview of the components of the XQ system, you can also have a look at the code as I've commented it up. Additionally, there is a "demo" folder if you open with the unity package, which contains a small demo scene with a couple of implementation examples. Important: all files are needed for XQ-LSC to function properly. XQ-LSC's class structure is found in **XQBaseClasses**. All interactable classes have custom property drawers and editors which must be in a folder named "Editor". The **XQManager** and at least one **QList** must be in the scene hierarchy. I've also included **QTrigger**, an optional implementation of linear playback controlling a single QList object at runtime, either with the button in the Inspector or by calling NextXQ.
 
 ### XQManager
 Handles routing of all parameters and actions in the XQ-LSC system. Must be present in the scene hierarchy, ideally in its own root folder to make sure it doesn't get deleted.
@@ -24,6 +20,8 @@ Contains groups of Qs which will all be fired simultaneously. Add Qs to an XQ gr
 
 ### Q
 Holds information to be passed to the target audio objects (GameObjects with AudioSource components attached). Each Q has different parameters depending on its type. "Play" starts the audio and sets a playback rate. "Fade" interpolates between two volume levels by a given fade curve. "Stop" pauses or completely stops playback. Different Q types are colour-coded for neatness. Each Q only addresses one target and only does one thing, so most situations will require several Qs per trigger. To help with timing, each Q has a "Pre-Wait Time" parameter that delays its action by a given number of seconds. Each Q's name is editable, and will show if collapsed; if left unfilled, it will default to its action and target name (eg. "Start Background Music").
+
+![The XQ-LSC function routing diagram](XQ-LSC%20Routing.png)
 
 ## Pipeline / Get Started
 * For each separate audio clip (more correctly, voice) you want, create a Game Object in the hierarchy, attach an Audio Source and assign a clip.
