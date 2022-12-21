@@ -1,5 +1,5 @@
 # XQ Linear Sound Control
-An early-stage plugin for Unity for controlling sound cues for linear playback. Either install the latest [unity package](/unitypackage/) or fork this repo. Read a brief overview here, watch [this video[(https://youtu.be/AunMfrNyVa0) for a usage example, or read in more detail at my [blog](https://impulseandresponse.wordpress.com/2021/12/30/amplify-cueing-linear-playback-in-unity/).
+An early-stage plugin for Unity for controlling sound cues for linear playback. Either install the latest [unity package](/unitypackage/) or fork this repo. Read a brief overview here, watch [this video](https://youtu.be/AunMfrNyVa0) for a usage example, or read in more detail at my [blog](https://impulseandresponse.wordpress.com/2021/12/30/amplify-cueing-linear-playback-in-unity/).
 
 ![A screenshot from the example scene (Dec 21)](https://impulseandresponse.files.wordpress.com/2021/12/xqprototype_qlistscreenshot.jpg)
 
